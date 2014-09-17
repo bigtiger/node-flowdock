@@ -123,4 +123,14 @@ class Session extends process.EventEmitter
       message: message
     @send "/flows/#{organizationId}/#{flowId}/invitations", data, callback
 
+  # Delete a message
+  delete: (flowId, organizationId, messageId, callback) ->
+    data =
+      event: 'message-delete'
+      flow: flowId
+      organization: organizationId
+      message: messageId
+
+    @send "/flows/#{organizationId}/#{flowId}/#{messageId}", data, callback
+
 exports.Session = Session
